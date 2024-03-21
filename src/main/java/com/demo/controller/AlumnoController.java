@@ -6,6 +6,7 @@ import com.demo.dto.AlumnoResponse;
 import com.demo.dto.Estado;
 import com.demo.service.AlumnoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -25,6 +26,7 @@ public class AlumnoController {
     }
 
     @PostMapping("/guardar")
+    @ResponseStatus(HttpStatus.CREATED)
     public Mono<Void> guardar(
             @Valid @RequestBody AlumnoRequest alumnoRequest) {
         alumnoService.agregar(alumnoRequest);
