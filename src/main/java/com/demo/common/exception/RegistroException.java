@@ -1,4 +1,4 @@
-package com.demo.exception;
+package com.demo.common.exception;
 
 public class RegistroException extends RuntimeException {
     public RegistroException(String message) {

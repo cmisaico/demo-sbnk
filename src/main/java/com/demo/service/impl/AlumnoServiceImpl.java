@@ -24,7 +24,7 @@ public class AlumnoServiceImpl implements AlumnoService {
 
     private AlumnoMapper alumnoMapper;
 
-    private AlumnoServiceImpl(AlumnoMapper alumnoMapper, AlumnoRepository alumnoRepository){
+    public AlumnoServiceImpl(AlumnoMapper alumnoMapper, AlumnoRepository alumnoRepository){
         this.alumnoRepository = alumnoRepository;
         this.alumnoMapper = alumnoMapper;
     }
@@ -42,7 +42,13 @@ public class AlumnoServiceImpl implements AlumnoService {
     }
 
     @Override
-    public Flux<AlumnoResponse> listar(Estado estado) {
+    public Flux<AlumnoResponse> listarTodo() {
+        return alumnoRepository.listarTodo()
+                .map(alumnoMapper::alumnoEntidadToAlumnoResponse);
+    }
+
+    @Override
+    public Flux<AlumnoResponse> listarPorEstado(Estado estado) {
         return alumnoRepository.listarPorEstado(estado)
                                 .map(alumnoMapper::alumnoEntidadToAlumnoResponse);
 

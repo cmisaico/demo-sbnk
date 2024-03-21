@@ -15,8 +15,10 @@ public interface AlumnoRepository {
 
     public Flux<AlumnoEntidad> listarTodo();
 
-    public Mono<AlumnoEntidad> buscar(UUID id);
+    public Mono<AlumnoEntidad> buscar(Long id);
 
     public Flux<AlumnoEntidad> listarPorEstado(Estado estado);
+
+    public Mono<Void> eliminar(Long id);
 
 }

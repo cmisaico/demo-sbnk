@@ -33,9 +33,14 @@ public class AlumnoController {
         return Mono.empty();
     }
 
-    @GetMapping("/listar/{estado}")
-    public Flux<AlumnoResponse> listarAlumnos(@PathVariable Estado estado) {
-        return alumnoService.listar(estado);
+    @GetMapping(value = {"/listar", "/listar/{estado}"})
+    @ResponseStatus(HttpStatus.OK)
+    public Flux<AlumnoResponse> listarAlumnos(@PathVariable(required = false) Estado estado) {
+        if(estado != null) {
+            return alumnoService.listarPorEstado(estado);
+        } else {
+            return alumnoService.listarTodo();
+        }
     }
 
 }

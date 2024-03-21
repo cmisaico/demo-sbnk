@@ -8,6 +8,8 @@ import reactor.core.publisher.Mono;
 
 public interface AlumnoService {
     public Mono<Void> agregar(AlumnoRequest alumnoRequest);
-    public Flux<AlumnoResponse> listar(Estado estado);
+    public Flux<AlumnoResponse> listarTodo();
+
+    public Flux<AlumnoResponse> listarPorEstado(Estado estado);
 
 }

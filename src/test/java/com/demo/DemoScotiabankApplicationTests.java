@@ -4,6 +4,7 @@ import com.demo.dto.AlumnoRequest;
 import com.demo.dto.AlumnoResponse;
 import com.demo.dto.Estado;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,6 +28,7 @@ class DemoScotiabankApplicationTests {
 
 
 	@Test
+	@Order(1)
 	public void listarActivoTest() {
 
 		AlumnoRequest alumnoRequest = AlumnoRequest.builder().id(2L)
@@ -61,10 +63,27 @@ class DemoScotiabankApplicationTests {
 	}
 
 	@Test
-	public void listarTest() {
+	@Order(2)
+	public void guardarTest() {
+
+		AlumnoRequest alumnoRequest = AlumnoRequest.builder().id(3L)
+				.nombre("Pablo").apellido("Gonzales Prado").estado(Estado.ACTIVO).edad(21)
+				.build();
+
+		client.post().uri(url + "/guardar")
+				.contentType(MediaType.APPLICATION_JSON_UTF8)
+				.accept(MediaType.APPLICATION_JSON_UTF8)
+				.body(Mono.just(alumnoRequest), AlumnoRequest.class)
+				.exchange()
+				.expectStatus().isCreated();
+	}
+
+	@Test
+	@Order(3)
+	public void listarTodoTest() {
 
 		client.get()
-				.uri(url + "/listar/ACTIVO")
+				.uri(url + "/listar")
 				.accept(MediaType.APPLICATION_JSON_UTF8)
 				.exchange()
 				.expectStatus().isOk()
@@ -74,6 +93,9 @@ class DemoScotiabankApplicationTests {
 					List<AlumnoResponse> productos = response.getResponseBody();
 					productos.forEach(p -> {
 						System.out.println(p.getNombre());
+						System.out.println(p.getApellido());
+						System.out.println(p.getEdad());
+						System.out.println(p.getEstado());
 					});
 
 					Assertions.assertThat(productos.size()>0).isTrue();
