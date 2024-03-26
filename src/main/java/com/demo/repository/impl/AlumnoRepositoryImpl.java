@@ -1,6 +1,7 @@
 package com.demo.repository.impl;
 
 import com.demo.dto.Estado;
+import com.demo.entity.Alumno;
 import com.demo.entity.AlumnoEntidad;
 import com.demo.common.exception.RegistroException;
 import com.demo.repository.AlumnoRepository;
@@ -10,7 +11,6 @@ import reactor.core.publisher.Mono;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 @Repository
 public class AlumnoRepositoryImpl implements AlumnoRepository {
@@ -53,6 +53,19 @@ public class AlumnoRepositoryImpl implements AlumnoRepository {
         alumnos.stream().filter(alumno -> Objects.equals(alumno.getId(), id))
                 .findAny()
                 .ifPresent(alumnos::remove);
+        return Mono.empty();
+    }
+
+    @Override
+    public Mono<Void> actualizar(AlumnoEntidad alumno) {
+        alumnos.stream().filter(alumnoEntidad -> Objects.equals(alumnoEntidad.getId(), alumno.getId()))
+                .findAny()
+                .ifPresent(alumnoEntidad -> {
+                    alumnoEntidad.setNombre(alumno.getNombre());
+                    alumnoEntidad.setApellido(alumno.getApellido());
+                    alumnoEntidad.setEdad(alumno.getEdad());
+                    alumnoEntidad.setEstado(alumno.getEstado());
+                });
         return Mono.empty();
     }
 

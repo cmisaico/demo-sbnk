@@ -12,4 +12,8 @@ public interface AlumnoService {
 
     public Flux<AlumnoResponse> listarPorEstado(Estado estado);
 
+    public Mono<Void> eliminar(Long id);
+
+    public Mono<Void> actualizar(AlumnoRequest alumnoRequest);
+
 }

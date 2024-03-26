@@ -43,4 +43,10 @@ public class AlumnoController {
         }
     }
 
+    @PutMapping("/actualizar")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<Void> actualizarAlumno(@Valid @RequestBody AlumnoRequest alumnoRequest) {
+        return alumnoService.actualizar(alumnoRequest);
+    }
+
 }

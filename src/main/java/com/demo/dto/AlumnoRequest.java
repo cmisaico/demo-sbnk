@@ -1,19 +1,18 @@
 package com.demo.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.validation.constraints.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 @Builder
 public class AlumnoRequest {
 
     @NotNull(message = "{alumno.id.vacio}")
+    @NonNull
     private Long id;
 
     @NotBlank(message = "{alumno.nombre.vacio}")
