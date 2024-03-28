@@ -1,10 +1,10 @@
 package com.demo.service.impl;
 
-import com.demo.dto.AlumnoRequest;
-import com.demo.dto.AlumnoResponse;
-import com.demo.dto.Estado;
-import com.demo.entity.AlumnoEntidad;
-import com.demo.exceptions.AlumnoException;
+import com.demo.models.dto.AlumnoRequest;
+import com.demo.models.dto.AlumnoResponse;
+import com.demo.models.dto.Estado;
+import com.demo.models.entity.AlumnoEntidad;
+import com.demo.common.exception.AlumnoException;
 import com.demo.mapper.AlumnoMapper;
 import com.demo.repository.AlumnoRepository;
 import com.demo.service.AlumnoService;
@@ -12,8 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor

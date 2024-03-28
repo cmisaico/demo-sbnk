@@ -1,12 +1,10 @@
-package com.demo.entity;
+package com.demo.models.entity;
 
-import com.demo.dto.Estado;
+import com.demo.models.dto.Estado;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.UUID;
 
 @Data
 @AllArgsConstructor

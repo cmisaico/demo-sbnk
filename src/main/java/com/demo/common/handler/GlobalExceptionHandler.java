@@ -1,7 +1,7 @@
-package com.demo.config;
+package com.demo.common.handler;
 
 import com.demo.common.exception.RegistroException;
-import com.demo.exceptions.AlumnoException;
+import com.demo.common.exception.AlumnoException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

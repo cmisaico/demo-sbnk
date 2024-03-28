@@ -1,8 +1,8 @@
 package com.demo;
 
-import com.demo.dto.AlumnoRequest;
-import com.demo.dto.AlumnoResponse;
-import com.demo.dto.Estado;
+import com.demo.models.dto.AlumnoRequest;
+import com.demo.models.dto.AlumnoResponse;
+import com.demo.models.dto.Estado;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;

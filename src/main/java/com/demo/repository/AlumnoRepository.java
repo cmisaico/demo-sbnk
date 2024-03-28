@@ -1,8 +1,7 @@
 package com.demo.repository;
 
-import com.demo.dto.Estado;
-import com.demo.entity.Alumno;
-import com.demo.entity.AlumnoEntidad;
+import com.demo.models.dto.Estado;
+import com.demo.models.entity.AlumnoEntidad;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

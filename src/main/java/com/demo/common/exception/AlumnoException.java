@@ -1,4 +1,4 @@
-package com.demo.exceptions;
+package com.demo.common.exception;
 
 public class AlumnoException extends RuntimeException {
 

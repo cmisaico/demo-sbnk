@@ -1,8 +1,7 @@
 package com.demo.repository.impl;
 
-import com.demo.dto.Estado;
-import com.demo.entity.Alumno;
-import com.demo.entity.AlumnoEntidad;
+import com.demo.models.dto.Estado;
+import com.demo.models.entity.AlumnoEntidad;
 import com.demo.common.exception.RegistroException;
 import com.demo.repository.AlumnoRepository;
 import org.springframework.stereotype.Repository;
