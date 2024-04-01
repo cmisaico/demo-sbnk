@@ -1,11 +1,12 @@
 package com.demo.controller;
 
 
-import com.demo.dto.AlumnoRequest;
-import com.demo.dto.AlumnoResponse;
-import com.demo.dto.Estado;
+import com.demo.models.dto.AlumnoRequest;
+import com.demo.models.dto.AlumnoResponse;
+import com.demo.models.dto.Estado;
 import com.demo.service.AlumnoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -25,15 +26,33 @@ public class AlumnoController {
     }
 
     @PostMapping("/guardar")
+    @ResponseStatus(HttpStatus.CREATED)
     public Mono<Void> guardar(
             @Valid @RequestBody AlumnoRequest alumnoRequest) {
         alumnoService.agregar(alumnoRequest);
         return Mono.empty();
     }
 
-    @GetMapping("/listar/{estado}")
-    public Flux<AlumnoResponse> listarAlumnos(@PathVariable Estado estado) {
-        return alumnoService.listar(estado);
+    @GetMapping(value = {"/listar", "/listar/{estado}"})
+    @ResponseStatus(HttpStatus.OK)
+    public Flux<AlumnoResponse> listarAlumnos(@PathVariable(required = false) Estado estado) {
+        if(estado != null) {
+            return alumnoService.listarPorEstado(estado);
+        } else {
+            return alumnoService.listarTodo();
+        }
+    }
+
+    @PutMapping("/actualizar")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<Void> actualizarAlumno(@Valid @RequestBody AlumnoRequest alumnoRequest) {
+        return alumnoService.actualizar(alumnoRequest);
+    }
+
+    @DeleteMapping("/eliminar/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<Void> eliminarAlumno(@PathVariable(required = false) Long id) {
+        return alumnoService.eliminar(id);
     }
 
 }
